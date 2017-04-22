@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using static dn32.infraestrutura.Utilitarios;
 using System.IO.Compression;
 using dn32.infraestrutura.Contrato;
-using static dn32.infraestrutura.Util.Compartilhado;
+using static dn32.infraestrutura.Compartilhado;
+using static dn32.infraestrutura.Utilitarios;
 
 namespace dn32.infraestrutura.Generico
 {
@@ -27,6 +27,7 @@ namespace dn32.infraestrutura.Generico
             {
                 item.Id = null;
             }
+
             return Salve(item, true);
         }
 
@@ -66,13 +67,13 @@ namespace dn32.infraestrutura.Generico
             throw new NotImplementedException();
         }
 
-        public List<TNome> ConsultePorTermo<TNome>(string termo) where TNome : IModelGenerico, new()
+        public List<T> ConsultePorTermo(string termo)
         {
             using (IDocumentSession session = Contexto.Store.OpenSession())
             {
                 return session
                        .Advanced
-                       .DocumentQuery<TNome>()
+                       .DocumentQuery<T>()
                        .Where($"{nameof(IModelGenerico.Nome)}:{termo}")
                        .OrderBy(x => x.Nome)
                        .ToList();
@@ -89,7 +90,7 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public virtual List<TNome> Liste<TNome>(int pagina, int elemtosPorPagina, out RavenQueryStatistics estatisticas) where TNome : IModelGenerico, new()
+        public virtual List<T> Liste(int pagina, int elemtosPorPagina, out RavenQueryStatistics estatisticas)
         {
             var quantidadeAPular = (pagina - 1) * elemtosPorPagina;
             if (elemtosPorPagina == 0)
@@ -100,7 +101,7 @@ namespace dn32.infraestrutura.Generico
             using (IDocumentSession session = Contexto.Store.OpenSession())
             {
                 return session
-                    .Query<TNome>()
+                    .Query<T>()
                     .Statistics(out estatisticas)
                     .OrderBy(x => x.Nome)
                     .Skip(quantidadeAPular)
@@ -120,15 +121,15 @@ namespace dn32.infraestrutura.Generico
 
         public void Backup()
         {
-            var temp = $"{EnderecoDeBackupDoBancoDeDados}{Guid.NewGuid()}";
+            var temp = $"{ParametrosDeInicializacao.EnderecoDeBackupDoBancoDeDados}{Guid.NewGuid()}";
             Directory.CreateDirectory(temp);
             Contexto.Store
                     .DatabaseCommands
                     .GlobalAdmin
-                    .StartBackup(temp, new DatabaseDocument(), incremental: false, databaseName: "dn32")
+                    .StartBackup(temp, new DatabaseDocument(), incremental: false, databaseName: ParametrosDeInicializacao.NomeDoBancoDeDados)
                     .WaitForCompletion();
 
-            var dir = $"{EnderecoDeBackupDoBancoDeDados}{ DateTime.Now.ToString("yyyy/MM/dd/")}";
+            var dir = $"{ParametrosDeInicializacao.EnderecoDeBackupDoBancoDeDados}{ DateTime.Now.ToString("yyyy/MM/dd/")}";
             var arquivoZip = $"{dir}{ DateTime.Now.ToString("HH-mm-ss")}.zip";
             Directory.CreateDirectory(dir);
             ZipFile.CreateFromDirectory(temp, arquivoZip);

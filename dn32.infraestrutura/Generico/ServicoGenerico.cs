@@ -32,6 +32,7 @@ namespace dn32.infraestrutura.Generico
 
         public void Backup()
         {
+            Validacao.Backup();
             Repositorio.Backup();
         }
 
@@ -53,10 +54,10 @@ namespace dn32.infraestrutura.Generico
             return Repositorio.Consulte(termo);
         }
 
-        public List<TNome> ConsultePorTermo<TNome>(string termo) where TNome : IModelGenerico, new()
+        public List<T> ConsultePorTermo(string termo)
         {
-            Validacao.ConsultePorTermo<TNome>(termo);
-            return Repositorio.ConsultePorTermo<TNome>(termo);
+            Validacao.ConsultePorTermo(termo);
+            return Repositorio.ConsultePorTermo(termo);
         }
 
         public virtual List<T> Liste()
@@ -65,10 +66,10 @@ namespace dn32.infraestrutura.Generico
             return Repositorio.Liste();
         }
 
-        public virtual List<TNome> Liste<TNome>(int pagina, int elemtosPorPagina, out RavenQueryStatistics estatisticas) where TNome : IModelGenerico, new()
+        public virtual List<T> Liste(int pagina, int elemtosPorPagina, out RavenQueryStatistics estatisticas)
         {
-            Validacao.Liste<TNome>(pagina, elemtosPorPagina);
-            return Repositorio.Liste<TNome>(pagina, elemtosPorPagina, out estatisticas);
+            Validacao.Liste(pagina, elemtosPorPagina);
+            return Repositorio.Liste(pagina, elemtosPorPagina, out estatisticas);
         }
 
         public virtual void Remova(int codigo)

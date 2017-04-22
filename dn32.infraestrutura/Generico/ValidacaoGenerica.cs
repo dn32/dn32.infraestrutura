@@ -1,8 +1,4 @@
-﻿using Raven.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using dn32.infraestrutura.Contrato;
 
 namespace dn32.infraestrutura.Generico
@@ -35,12 +31,12 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
+        public virtual void Backup()
+        {
+        }
+
         public virtual void Salve(T item)
         {
-            //if(item.Codigo == 0)
-            //{
-            //    throw new Exception("Código não pode ser 0");
-            //}
         }
 
         public virtual void Consulte(int id)
@@ -49,13 +45,9 @@ namespace dn32.infraestrutura.Generico
 
         public virtual void Consulte(string termo)
         {
-            if(string.IsNullOrWhiteSpace(termo))
-            {
-                throw new Exception("Não é permitido termo vazio");
-            }
         }
 
-        public void ConsultePorTermo<TNome>(string termo) where TNome : IModelGenerico, new()
+        public void ConsultePorTermo(string termo)
         {
         }
 
@@ -63,7 +55,7 @@ namespace dn32.infraestrutura.Generico
         {
         }
 
-        public virtual void Liste<TNome>(int pagina, int elemtosPorPagina) where TNome : IModelGenerico, new()
+        public virtual void Liste(int pagina, int elemtosPorPagina)
         {
         }
 

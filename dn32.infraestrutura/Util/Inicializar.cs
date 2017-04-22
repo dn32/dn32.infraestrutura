@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using static dn32.infraestrutura.Util.Compartilhado;
+using static dn32.infraestrutura.Compartilhado;
 using System.Runtime.Loader;
 using dn32.infraestrutura.Model;
 using System.IO;
@@ -14,6 +14,9 @@ namespace dn32.infraestrutura.Util
     {
         public static void Inicialize(ParametrosDeInicializacao parametrosDeInicializacao)
         {
+            ValideParametrosDeInicializacao(parametrosDeInicializacao);
+            Compartilhado.ParametrosDeInicializacao = parametrosDeInicializacao;
+
             DicionarioDeServico = new Dictionary<string, Type>();
             DicionarioDeRepositorio = new Dictionary<string, Type>();
             DicionarioDeValidacao = new Dictionary<string, Type>();
@@ -23,12 +26,6 @@ namespace dn32.infraestrutura.Util
             var enderecoDaDllDervico = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDoServico}.dll";
             var enderecoDaDllValidacao = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDaValidacao}.dll";
             var enderecoDaDllREpositorio = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDoRepositorio}.dll";
-            EnderecoDoBancoDeDados = parametrosDeInicializacao.EnderecoDoBancoDeDados;
-
-            if (string.IsNullOrWhiteSpace(EnderecoDoBancoDeDados))
-            {
-                throw new Exception("O endereço do banco de dados não foi informado na inicialização da infraestrutura.");
-            }
 
             if (!File.Exists(enderecoDaDllDervico))
             {
@@ -69,6 +66,19 @@ namespace dn32.infraestrutura.Util
             {
                 var entidade = ((RepositorioDeAttribute)type.GetTypeInfo().GetCustomAttribute(typeof(RepositorioDeAttribute))).TipoDeEntidade;
                 DicionarioDeRepositorio.Add(entidade.Name, type);
+            }
+        }
+
+        private static void ValideParametrosDeInicializacao(ParametrosDeInicializacao parametrosDeInicializacao)
+        {
+            if (string.IsNullOrWhiteSpace(parametrosDeInicializacao.NomeDoBancoDeDados))
+            {
+                throw new Exception("O endereço do banco de dados não foi informado na inicialização da infraestrutura.");
+            }
+
+            if (string.IsNullOrWhiteSpace(parametrosDeInicializacao.EnderecoDoBancoDeDados))
+            {
+                throw new Exception("O endereço do banco de dados não foi informado na inicialização da infraestrutura.");
             }
         }
     }
