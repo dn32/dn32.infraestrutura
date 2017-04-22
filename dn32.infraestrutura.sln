@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dn32.infraestrutura", "dn32.infraestrutura\dn32.infraestrutura.csproj", "{7943FFF2-ABC5-456E-BB8A-FDBFCC9B106A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dn32.infraestrutura.testes", "dn32.infraestrutura.testes\dn32.infraestrutura.testes.csproj", "{F090A015-69E4-4D72-9D4B-699B8D1EA982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7943FFF2-ABC5-456E-BB8A-FDBFCC9B106A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7943FFF2-ABC5-456E-BB8A-FDBFCC9B106A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7943FFF2-ABC5-456E-BB8A-FDBFCC9B106A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F090A015-69E4-4D72-9D4B-699B8D1EA982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F090A015-69E4-4D72-9D4B-699B8D1EA982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F090A015-69E4-4D72-9D4B-699B8D1EA982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F090A015-69E4-4D72-9D4B-699B8D1EA982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

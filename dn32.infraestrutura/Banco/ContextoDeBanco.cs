@@ -12,8 +12,8 @@ namespace dn32.infraestrutura.Banco
             {
                 Store = new DocumentStore
                 {
-                    Url = "http://localhost:8080",
-                    DefaultDatabase = "dn32"
+                    Url = Compartilhado.ParametrosDeInicializacao.EnderecoDoBancoDeDados,
+                    DefaultDatabase = Compartilhado.ParametrosDeInicializacao.NomeDoBancoDeDados,
                 };
 
                 Store.Conventions.FindTypeTagName = type =>
@@ -24,11 +24,6 @@ namespace dn32.infraestrutura.Banco
                 Store.Initialize();
             }
 
-        }
-
-        public static Contexto Crie()
-        {
-            return new Contexto();
         }
     }
 }

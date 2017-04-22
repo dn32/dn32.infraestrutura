@@ -9,7 +9,7 @@ namespace dn32.infraestrutura.Fabrica
 {
     public class FabricaDeRepositorio
     {
-        public static RepositorioGenerico<T> Crie<T>(Contexto Contexto, bool usarSpecifico = false) where T : IModelGenerico, new()
+        public static RepositorioGenerico<T> Crie<T>(bool usarSpecifico = false) where T : IModelGenerico, new()
         {
             Type type = typeof(T);
             Compartilhado.DicionarioDeRepositorio.TryGetValue(type.Name, out type);
@@ -21,7 +21,7 @@ namespace dn32.infraestrutura.Fabrica
 
             type = type ?? typeof(RepositorioGenerico<T>);
 
-            return (RepositorioGenerico<T>)Activator.CreateInstance(type, Contexto);
+            return (RepositorioGenerico<T>)Activator.CreateInstance(type);
         }
     }
 }

@@ -1,17 +1,24 @@
 ﻿using System;
 using dn32.infraestrutura.Contrato;
+using dn32.infraestrutura.Fabrica;
 
 namespace dn32.infraestrutura.Generico
 {
     public class ValidacaoGenerica<T> where T : IModelGenerico, new()
     {
-        public RepositorioGenerico<T> Repositorio { get; set; }
-        public Type TipoDeEntidade { get; set; }
+        private RepositorioGenerico<T> _repositorio { get; set; }
 
-        public ValidacaoGenerica(RepositorioGenerico<T> repositorio)
+        public RepositorioGenerico<T> Repositorio
         {
-            TipoDeEntidade = typeof(T);
-            Repositorio = repositorio;
+            get
+            {
+                if(_repositorio == null)
+                {
+                    _repositorio = FabricaDeRepositorio.Crie<T>();
+                }
+
+                return _repositorio;
+            }
         }
 
         public virtual void Cadastrar(T item)

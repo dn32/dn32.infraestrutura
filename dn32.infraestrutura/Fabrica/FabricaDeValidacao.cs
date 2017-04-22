@@ -8,7 +8,7 @@ namespace dn32.infraestrutura.Fabrica
 {
     public class FabricaDeValidacao
     {
-        public static ValidacaoGenerica<T> Crie<T>(RepositorioGenerico<T> repositorio, bool usarSpecifico = false) where T : IModelGenerico, new()
+        public static ValidacaoGenerica<T> Crie<T>(bool usarSpecifico = false) where T : IModelGenerico, new()
         {
             Type type = typeof(T);
             Compartilhado.DicionarioDeValidacao.TryGetValue(type.Name, out type);
@@ -20,7 +20,7 @@ namespace dn32.infraestrutura.Fabrica
 
             type = type ?? typeof(ValidacaoGenerica<T>);
 
-            return (ValidacaoGenerica<T>)Activator.CreateInstance(type, repositorio);
+            return (ValidacaoGenerica<T>)Activator.CreateInstance(type);
         }
     }
 }

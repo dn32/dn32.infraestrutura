@@ -1,21 +1,46 @@
 ﻿using Raven.Client;
-using dn32.infraestrutura.Banco;
 using System;
 using System.Collections.Generic;
 using dn32.infraestrutura.Contrato;
+using dn32.infraestrutura.Fabrica;
 
 namespace dn32.infraestrutura.Generico
 {
     public class ServicoGenerico<T> where T : IModelGenerico, new()
     {
-        public RepositorioGenerico<T> Repositorio { get; set; }
-        public ValidacaoGenerica<T> Validacao { get; set; }
-        public Contexto Contexto { get; set; }
         public Type TipoDeEntidade { get; set; }
+        private RepositorioGenerico<T> _repositorio { get; set; }
+        private ValidacaoGenerica<T> _validacao { get; set; }
 
-        public ServicoGenerico(Contexto context)
+        public RepositorioGenerico<T> Repositorio
         {
-            Contexto = context;
+            get
+            {
+                if (_repositorio == null)
+                {
+                    _repositorio = FabricaDeRepositorio.Crie<T>();
+                }
+
+                return _repositorio;
+            }
+        }
+
+        public ValidacaoGenerica<T> Validacao
+        {
+            get
+            {
+                if (_validacao == null)
+                {
+                    _validacao = FabricaDeValidacao.Crie<T>();
+                }
+
+                return _validacao;
+            }
+        }
+
+        public ServicoGenerico()
+        {
+            TipoDeEntidade = typeof(T);
         }
 
         public virtual int Cadastrar(T item)

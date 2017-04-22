@@ -9,7 +9,7 @@ namespace dn32.infraestrutura.Fabrica
 {
     public class FabricaDeServico
     {
-        public static ServicoGenerico<T> Crie<T>(Contexto contexto = null, bool usarSpecifico = false) where T : IModelGenerico, new()
+        public static ServicoGenerico<T> Crie<T>(bool usarSpecifico = false) where T : IModelGenerico, new()
         {
             Type type = typeof(T);
             Compartilhado.DicionarioDeServico.TryGetValue(type.Name, out type);
@@ -21,14 +21,7 @@ namespace dn32.infraestrutura.Fabrica
 
             type = type ?? typeof(ServicoGenerico<T>);
 
-            contexto = contexto ?? Contexto.Crie();
-            ServicoGenerico<T> servico = (ServicoGenerico<T>)Activator.CreateInstance(type, contexto);
-
-            servico.Repositorio = FabricaDeRepositorio.Crie<T>(contexto) as RepositorioGenerico<T>;
-            servico.Validacao = FabricaDeValidacao.Crie<T>(servico.Repositorio) as ValidacaoGenerica<T>;
-            servico.TipoDeEntidade = typeof(T);
-
-            return servico;
+            return (ServicoGenerico<T>)Activator.CreateInstance(type); ;
         }
     }
 }

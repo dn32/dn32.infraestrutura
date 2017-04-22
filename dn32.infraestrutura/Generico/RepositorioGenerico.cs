@@ -14,11 +14,14 @@ namespace dn32.infraestrutura.Generico
 {
     public class RepositorioGenerico<T> where T : IModelGenerico, new()
     {
-        public Contexto Contexto { get; set; }
+        private static Contexto Contexto { get; set; }
 
-        public RepositorioGenerico(Contexto Contexto)
+        public RepositorioGenerico()
         {
-            this.Contexto = Contexto;
+            if (Contexto == null)
+            {
+                Contexto = new Contexto();
+            }
         }
 
         public virtual int Cadastrar(T item)
