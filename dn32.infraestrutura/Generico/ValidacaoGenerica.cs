@@ -1,6 +1,7 @@
 ﻿using System;
 using dn32.infraestrutura.Contrato;
 using dn32.infraestrutura.Fabrica;
+using dn32.infraestrutura.Constantes;
 
 namespace dn32.infraestrutura.Generico
 {
@@ -23,9 +24,14 @@ namespace dn32.infraestrutura.Generico
 
         public virtual void Cadastre(T item)
         {
+            if (string.IsNullOrWhiteSpace(item.Nome))
+            {
+                throw new Exception(ConstantesDeValidacao.O_NOME_DO_ELEMENTO_DEVE_SER_INFORMADO);
+            }
+
             if (item.Codigo != 0 && Repositorio.Consulte(item.Codigo) != null)
             {
-                throw new Exception($"Já existe um elemento com o código {item.Codigo} cadastrado.");
+                throw new Exception(ConstantesDeValidacao.JA_EXISTE_UM_ELEMENTO_CADASTRADO_COM_ESSE_CODIGO);
             }
         }
 
@@ -34,7 +40,7 @@ namespace dn32.infraestrutura.Generico
             var existente = Repositorio.Consulte(item.Codigo);
             if (existente != null && item.DataDeCadastro.ToString("MMddyyyyHHmmss") != existente.DataDeCadastro.ToString("MMddyyyyHHmmss"))
             {
-                throw new Exception($"Já existe um elemento com o código {item.Codigo} cadastrado.");
+                throw new Exception(ConstantesDeValidacao.JA_EXISTE_UM_ELEMENTO_CADASTRADO_COM_ESSE_CODIGO);
             }
         }
 
