@@ -43,16 +43,16 @@ namespace dn32.infraestrutura.Generico
             TipoDeEntidade = typeof(T);
         }
 
-        public virtual int Cadastrar(T item)
+        public virtual int Cadastre(T item)
         {
-            Validacao.Cadastrar(item);
-            return Repositorio.Cadastrar(item);
+            Validacao.Cadastre(item);
+            return Repositorio.Cadastre(item);
         }
 
-        public virtual int Salvar(T item)
+        public virtual int Salve(T item)
         {
             Validacao.Salve(item);
-            return Repositorio.Salve(item, null);
+            return Repositorio.Atualize(item, null);
         }
 
         public void Backup()
@@ -61,10 +61,10 @@ namespace dn32.infraestrutura.Generico
             Repositorio.Backup();
         }
 
-        public virtual int Atualizar(T item)
+        public virtual int Atualize(T item)
         {
-            Validacao.Atualizar(item);
-            return Repositorio.Salve(item, false);
+            Validacao.Atualize(item);
+            return Repositorio.Atualize(item, false);
         }
 
         public virtual T Consulte(int codigo)
@@ -73,16 +73,10 @@ namespace dn32.infraestrutura.Generico
             return Repositorio.Consulte(codigo);
         }
 
-        public virtual T Consulte(string termo)
-        {
-            Validacao.Consulte(termo);
-            return Repositorio.Consulte(termo);
-        }
-
-        public List<T> ConsultePorTermo(string termo)
+        public List<T> Consulte(string termo)
         {
             Validacao.ConsultePorTermo(termo);
-            return Repositorio.ConsultePorTermo(termo);
+            return Repositorio.Consulte(termo);
         }
 
         public virtual List<T> Liste()

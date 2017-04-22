@@ -24,22 +24,22 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public virtual int Cadastrar(T item)
+        public virtual int Cadastre(T item)
         {
             if (item.Codigo == 0)
             {
                 item.Id = null;
             }
 
-            return Salve(item, true);
+            return Atualize(item, true);
         }
 
         public virtual int Atualizar(T item)
         {
-            return Salve(item, false);
+            return Atualize(item, false);
         }
 
-        public virtual int Salve(T item, bool? novo)
+        public virtual int Atualize(T item, bool? novo)
         {
             using (IDocumentSession session = Contexto.Store.OpenSession())
             {
@@ -65,12 +65,7 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public virtual T Consulte(string termo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<T> ConsultePorTermo(string termo)
+        public virtual List<T> Consulte(string termo)
         {
             using (IDocumentSession session = Contexto.Store.OpenSession())
             {

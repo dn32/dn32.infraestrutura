@@ -21,7 +21,7 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public virtual void Cadastrar(T item)
+        public virtual void Cadastre(T item)
         {
             if (item.Codigo != 0 && Repositorio.Consulte(item.Codigo) != null)
             {
@@ -29,7 +29,7 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public virtual void Atualizar(T item)
+        public virtual void Atualize(T item)
         {
             var existente = Repositorio.Consulte(item.Codigo);
             if (existente != null && item.DataDeCadastro.ToString("MMddyyyyHHmmss") != existente.DataDeCadastro.ToString("MMddyyyyHHmmss"))

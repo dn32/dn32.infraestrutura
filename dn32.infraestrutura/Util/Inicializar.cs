@@ -8,7 +8,7 @@ using System.Runtime.Loader;
 using dn32.infraestrutura.Model;
 using System.IO;
 
-namespace dn32.infraestrutura.Util
+namespace dn32.infraestrutura
 {
     public class Inicializar
     {
@@ -21,8 +21,7 @@ namespace dn32.infraestrutura.Util
             DicionarioDeRepositorio = new Dictionary<string, Type>();
             DicionarioDeValidacao = new Dictionary<string, Type>();
 
-            var location = Assembly.GetEntryAssembly().Location;
-            var enderecoBase = Path.GetDirectoryName(location);
+            var enderecoBase = Directory.GetCurrentDirectory(); // Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             var enderecoDaDllDervico = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDoServico}.dll";
             var enderecoDaDllValidacao = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDaValidacao}.dll";
             var enderecoDaDllREpositorio = $"{enderecoBase}\\{parametrosDeInicializacao.NomeDoAssemblyDoRepositorio}.dll";
