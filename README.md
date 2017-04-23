@@ -49,7 +49,7 @@ public void ConfigureServices(IServiceCollection services)
     .........
 }
 ```
-O Model
+- <h4>3 passo: O Model</h4>
 
 ```C#
 public class UnidadeDeTeste : ModelGenerico
@@ -59,7 +59,7 @@ public class UnidadeDeTeste : ModelGenerico
 }
 ```
 
-O Controller
+- <h4>4° passo: O Controller
 
 ```C#
 public class UnidadeDeTesteController : ControladorGenerico<UnidadeDeTeste>
@@ -72,7 +72,7 @@ public class UnidadeDeTesteController : ControladorGenerico<UnidadeDeTeste>
 }
 ```
 
-O Serviço customizado
+- <h4>5° passo: O Serviço customizado</h4>
 
 ```C#
 [ServicoDe(typeof(UnidadeDeTeste))]
@@ -87,7 +87,7 @@ public class ServicoDeUnidadeDeTeste : ServicoGenerico<UnidadeDeTeste>
 }
 ```
 
-O Validação customizada
+- <h4>6° passo: O Validação customizada</h4>
 
 ```C#
 [ValidacaoDe(typeof(UnidadeDeTeste))]
@@ -110,7 +110,7 @@ public class ValidacaoDeUnidadeDeTeste : ValidacaoGenerica<UnidadeDeTeste>
 }
 ```
 
-O Repositório customizado
+- <h4>7° passo: O Repositório customizado</h4>
 
 ```C#
 [RepositorioDe(typeof(UnidadeDeTeste))]
