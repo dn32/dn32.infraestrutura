@@ -49,3 +49,77 @@ public void ConfigureServices(IServiceCollection services)
     .........
 }
 ```
+O Model
+
+```C#
+public class UnidadeDeTeste : ModelGenerico
+{
+    public string Descricao { get; set; }
+    public int Numero { get; set; }
+}
+```
+
+O Controller
+
+```C#
+public class UnidadeDeTesteController : ControladorGenerico<UnidadeDeTeste>
+{
+    public ActionResult Cadastro(UnidadeDeTeste unidadeDeTeste)
+    {
+        Servico.Cadastre(unidadeDeTeste);
+        return View();
+    }
+}
+```
+
+O Serviço customizado
+
+```C#
+[ServicoDe(typeof(UnidadeDeTeste))]
+public class ServicoDeUnidadeDeTeste : ServicoGenerico<UnidadeDeTeste>
+{
+    public int CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
+    {
+        unidadeDeteste.Descricao += " - Servico";
+        ((ValidacaoDeUnidadeDeTeste)Validacao).CadastreCustomizado(unidadeDeteste);
+        return ((RepositorioDeUnidadeDeTeste)Repositorio).CadastreCustomizado(unidadeDeteste);
+    }
+}
+```
+
+O Validação customizada
+
+```C#
+[ValidacaoDe(typeof(UnidadeDeTeste))]
+public class ValidacaoDeUnidadeDeTeste : ValidacaoGenerica<UnidadeDeTeste>
+{
+    public override void Cadastre(UnidadeDeTeste item)
+    {
+        if(item.Numero < 17 || item.Numero > 80)
+        {
+            throw new Exception(ConstantesDeTeste.O_NUMERO_DEVE_SEM_MAIOR_QUE_17_E_MENOR_QUE_80);
+        }
+
+        base.Cadastre(item);
+    }
+
+    public void CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
+    {
+
+    }
+}
+```
+
+O Repositório customizado
+
+```C#
+[RepositorioDe(typeof(UnidadeDeTeste))]
+public class RepositorioDeUnidadeDeTeste : RepositorioGenerico<UnidadeDeTeste>
+{
+    public int CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
+    {
+        unidadeDeteste.Descricao += "-Repositório";
+       return Cadastre(unidadeDeteste);
+    }
+}
+```
