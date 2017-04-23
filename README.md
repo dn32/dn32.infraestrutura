@@ -1,4 +1,8 @@
+
 # dn32.infraestrutura
+<img src="https://raw.githubusercontent.com/dn32/dn32.infraestrutura/master/Media/Logo/Logo-icone-png-128.png"/>
+
+
 Essa infraestrutura foi desenvolvida durante o treinamento [Formação Completa Desenvolvedor Web](https://sinergiaweb.com.br)
 
 #### É compatível com ASP.NET Core 1.1.2 ou superior
