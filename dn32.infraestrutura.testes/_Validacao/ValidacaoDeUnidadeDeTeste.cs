@@ -18,6 +18,7 @@ namespace dn32.infraestrutura.testes.Repositorio
 
             base.Cadastre(item);
         }
+
         public void CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
         {
 

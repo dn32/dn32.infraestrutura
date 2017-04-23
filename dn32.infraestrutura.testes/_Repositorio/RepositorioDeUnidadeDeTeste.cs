@@ -9,7 +9,7 @@ namespace dn32.infraestrutura.testes.Repositorio
     {
         public int CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
         {
-            unidadeDeteste.Descricao = "Descricao do cadastro customizado";
+            unidadeDeteste.Descricao += "-Repositório";
            return Cadastre(unidadeDeteste);
         }
     }

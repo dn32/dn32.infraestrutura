@@ -9,9 +9,9 @@ namespace dn32.infraestrutura.testes.Repositorio
     {
         public int CadastreCustomizado(UnidadeDeTeste unidadeDeteste)
         {
-            unidadeDeteste.Descricao += " - Repositório";
+            unidadeDeteste.Descricao += " - Servico";
             ((ValidacaoDeUnidadeDeTeste)Validacao).CadastreCustomizado(unidadeDeteste);
-            return CadastreCustomizado(unidadeDeteste);
+            return ((RepositorioDeUnidadeDeTeste)Repositorio).CadastreCustomizado(unidadeDeteste);
         }
     }
 }

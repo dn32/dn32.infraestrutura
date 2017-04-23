@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using dn32.infraestrutura.testes.Repositorio;
 
 namespace dn32.infraestrutura.testes.TestesDeServico
 {
@@ -31,9 +32,30 @@ namespace dn32.infraestrutura.testes.TestesDeServico
 
             var unidadeDeTeste = ObtenhaElementoPadrao();
             var codigo = servico.Cadastre(unidadeDeTeste);
+            var elementoCadastrado = servico.Consulte(codigo);
 
             Assert.NotEqual(codigo, 0);
-            Assert.Equal(unidadeDeTeste.Nome, "Nome da unidade de teste");
+            Assert.NotNull(elementoCadastrado);
+            Assert.Equal(elementoCadastrado.Nome, "Nome da unidade de teste");
+
+            servico.Remova(codigo);
+        }
+
+
+        [Fact(DisplayName = nameof(TesteCadastreCustomizado))]
+        public void TesteCadastreCustomizado()
+        {
+            var servico = FabricaDeServico.Crie<UnidadeDeTeste>() as ServicoDeUnidadeDeTeste;
+
+            var unidadeDeTeste = ObtenhaElementoPadrao();
+            var codigo = servico.CadastreCustomizado(unidadeDeTeste);
+
+            Assert.NotEqual(codigo, 0);
+
+            var elementoCadastrado = servico.Consulte(codigo);
+
+            Assert.NotNull(elementoCadastrado);
+            Assert.Equal(elementoCadastrado.Descricao, "Descrição de teste - Servico-Repositório");
 
             servico.Remova(codigo);
         }
@@ -53,10 +75,10 @@ namespace dn32.infraestrutura.testes.TestesDeServico
             Assert.Equal(ex.Message, O_NOME_DO_ELEMENTO_DEVE_SER_INFORMADO);
         }
 
-        [Theory(DisplayName = nameof(TesteCadastroComNumeroPequeno))]
+        [Theory(DisplayName = nameof(TesteCadastroComNumeroErro))]
         [InlineData(13)]
         [InlineData(90)]
-        public void TesteCadastroComNumeroPequeno(int value)
+        public void TesteCadastroComNumeroErro(int value)
         {
             var servico = FabricaDeServico.Crie<UnidadeDeTeste>();
             var unidadeDeTeste = ObtenhaElementoPadrao();
