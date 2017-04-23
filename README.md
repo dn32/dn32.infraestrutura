@@ -23,7 +23,7 @@ Baixe o pacote por meio do NuGet executando o seguinte comando:
 PM> Install-Package dn32.infraestrutura
 ```
 
-- <h4>2° passo: Implantar o **dn32.infraestrutura** no meu projeto</h4>
+- <h4>2° passo: Implantar o dn32.infraestrutura no meu projeto</h4>
 
 Adicione a inicialização da infraestrutura ao seu projeto por meio dos comandos abaixo em seu arquivo startup.cs
 
