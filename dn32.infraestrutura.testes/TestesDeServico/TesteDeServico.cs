@@ -1,17 +1,15 @@
 ﻿using static dn32.infraestrutura.Constantes.ConstantesDeValidacao;
 using static dn32.infraestrutura.testes.Constantes.ConstantesDeTeste;
 using dn32.infraestrutura.Fabrica;
-using dn32.infraestrutura.Generico;
 using dn32.infraestrutura.testes.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using dn32.infraestrutura.testes.Repositorio;
+using dn32.infraestrutura.testes._Genericos;
 
 namespace dn32.infraestrutura.testes.TestesDeServico
 {
-    public class TesteDeServico : TesteGenerico<UnidadeDeTeste>
+    public class TesteDeServico : TesteBase<UnidadeDeTeste>
     {
         private UnidadeDeTeste ObtenhaElementoPadrao()
         {

@@ -12,7 +12,7 @@ namespace dn32.infraestrutura.Model
         public string NomeDoAssemblyDaValidacao { get; set; }
         public string EnderecoDeBackupDoBancoDeDados { get; set; }
         public string EnderecoDoBancoDeDados { get; set; }
-        public string NomeDoBancoDeDados { get; internal set; }
-        public IServiceCollection Services { get; internal set; }
+        public string NomeDoBancoDeDados { get; set; }
+        public IServiceCollection Services { get; set; }
     }
 }
