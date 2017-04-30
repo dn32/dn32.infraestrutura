@@ -1,4 +1,4 @@
-﻿using dn32.infraestrutura.Contrato;
+﻿using dn32.infraestrutura.Generico;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -9,7 +9,7 @@ namespace dn32.infraestrutura
     //using static dn32.infraestrutura.Utilitarios;
     public static class Utilitarios
     {
-        public static string ObtenhaIdDoElemento<T2>(int codigo) where T2 : IModelGenerico, new()
+        public static string ObtenhaIdDoElemento<T2>(int codigo) where T2 : ModelGenerico, new()
         {
             return $"{typeof(T2).Name}/{codigo}".ToLower();
         }
@@ -37,13 +37,13 @@ namespace dn32.infraestrutura
 
         public static void EhModelgenerico(Type tipo)
         {
-            var implementa = tipo.GetInterfaces().Any(x => x == typeof(IModelGenerico));
-
-            if (!implementa)
+            var ehFilhoDe = tipo.GetTypeInfo().IsSubclassOf(typeof(ModelGenerico));
+            if (!ehFilhoDe)
             {
-                throw new Exception(string.Format($"Não é possível mapear {tipo.Name}, pois ele não implementa {nameof(IModelGenerico)}"));
+                throw new Exception(string.Format($"Não é possível mapear {tipo.Name}, pois ele não herda de {nameof(ModelGenerico)}"));
             }
         }
+
         public static bool ValideEmail(string email)
         {
             if (email == null)

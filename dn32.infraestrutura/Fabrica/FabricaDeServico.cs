@@ -1,12 +1,11 @@
-﻿using dn32.infraestrutura.Contrato;
-using dn32.infraestrutura.Generico;
+﻿using dn32.infraestrutura.Generico;
 using System;
 
 namespace dn32.infraestrutura.Fabrica
 {
     public class FabricaDeServico
     {
-        public static ServicoGenerico<T> Crie<T>() where T : IModelGenerico, new()
+        public static ServicoGenerico<T> Crie<T>() where T : ModelGenerico, new()
         {
             if (!Compartilhado.Inicializado)
             {

@@ -1,5 +1,4 @@
-﻿using dn32.infraestrutura.Contrato;
-using dn32.infraestrutura.Generico;
+﻿using dn32.infraestrutura.Generico;
 using dn32.infraestrutura.Model;
 using dn32.infraestrutura.testes.Model;
 using System;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace dn32.infraestrutura.testes._Genericos
 {
-    public class TesteBase<T> : TesteGenerico<T> where T : IModelGenerico, new() 
+    public class TesteBase<T> : TesteGenerico<T> where T : ModelGenerico, new() 
     {
         public override void InicializarInfraestrutura()
         {

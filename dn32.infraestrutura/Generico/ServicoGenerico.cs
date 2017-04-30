@@ -1,18 +1,17 @@
 ﻿using Raven.Client;
 using System;
 using System.Collections.Generic;
-using dn32.infraestrutura.Contrato;
 using dn32.infraestrutura.Fabrica;
 
 namespace dn32.infraestrutura.Generico
 {
-    public class ServicoGenerico<T> where T : IModelGenerico, new()
+    public class ServicoGenerico<T> where T : ModelGenerico, new()
     {
         public Type TipoDeEntidade { get; set; }
-        private RepositorioGenerico<T> _repositorio { get; set; }
-        private ValidacaoGenerica<T> _validacao { get; set; }
+        protected RepositorioGenerico<T> _repositorio { get; set; }
+        protected ValidacaoGenerica<T> _validacao { get; set; }
 
-        public RepositorioGenerico<T> Repositorio
+        public virtual RepositorioGenerico<T> Repositorio
         {
             get
             {
@@ -25,7 +24,7 @@ namespace dn32.infraestrutura.Generico
             }
         }
 
-        public ValidacaoGenerica<T> Validacao
+        public virtual ValidacaoGenerica<T> Validacao
         {
             get
             {
@@ -73,22 +72,10 @@ namespace dn32.infraestrutura.Generico
             return Repositorio.Consulte(codigo);
         }
 
-        public List<T> Consulte(string termo)
-        {
-            Validacao.ConsultePorTermo(termo);
-            return Repositorio.Consulte(termo);
-        }
-
         public virtual List<T> Liste()
         {
             Validacao.Liste();
             return Repositorio.Liste();
-        }
-
-        public virtual List<T> Liste(int pagina, int elemtosPorPagina, out RavenQueryStatistics estatisticas)
-        {
-            Validacao.Liste(pagina, elemtosPorPagina);
-            return Repositorio.Liste(pagina, elemtosPorPagina, out estatisticas);
         }
 
         public virtual void Remova(int codigo)

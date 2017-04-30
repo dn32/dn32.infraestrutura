@@ -7,7 +7,7 @@ using System;
 namespace dn32.infraestrutura.testes.Repositorio
 {
     [ValidacaoDe(typeof(UnidadeDeTeste))]
-    public class ValidacaoDeUnidadeDeTeste : ValidacaoGenerica<UnidadeDeTeste>
+    public class ValidacaoDeUnidadeDeTeste : ValidacaoGenericaComNome<UnidadeDeTeste>
     {
         public override void Cadastre(UnidadeDeTeste item)
         {

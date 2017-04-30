@@ -5,7 +5,7 @@ using System.Text;
 
 namespace dn32.infraestrutura.testes.Model
 {
-    public class UnidadeDeTeste : ModelGenerico
+    public class UnidadeDeTeste : ModelGenericoComNome
     {
         public string Descricao { get; set; }
         public int Numero { get; set; }
