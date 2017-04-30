@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace dn32.infraestrutura
 {
-    public class Compartilhado
+    internal class Compartilhado
     {
-        public static Dictionary<string, Type> DicionarioDeServico { get; set; }
-        public static Dictionary<string, Type> DicionarioDeRepositorio { get; set; }
-        public static Dictionary<string, Type> DicionarioDeValidacao { get; set; }
-        public static ParametrosDeInicializacao ParametrosDeInicializacao { get; set; }
+        internal static Dictionary<string, Type> DicionarioDeServico { get; set; }
+        internal static Dictionary<string, Type> DicionarioDeRepositorio { get; set; }
+        internal static Dictionary<string, Type> DicionarioDeValidacao { get; set; }
+        internal static ParametrosDeInicializacao ParametrosDeInicializacao { get; set; }
+        internal static bool Inicializado { get; set; }
     }
 }

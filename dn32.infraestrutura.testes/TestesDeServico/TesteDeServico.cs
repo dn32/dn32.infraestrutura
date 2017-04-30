@@ -1,11 +1,11 @@
-﻿using static dn32.infraestrutura.Constantes.ConstantesDeValidacao;
-using static dn32.infraestrutura.testes.Constantes.ConstantesDeTeste;
+﻿using static dn32.infraestrutura.testes.Constantes.ConstantesDeTeste;
 using dn32.infraestrutura.Fabrica;
 using dn32.infraestrutura.testes.Model;
 using System;
 using Xunit;
 using dn32.infraestrutura.testes.Repositorio;
 using dn32.infraestrutura.testes._Genericos;
+using dn32.infraestrutura.Constantes;
 
 namespace dn32.infraestrutura.testes.TestesDeServico
 {
@@ -70,7 +70,7 @@ namespace dn32.infraestrutura.testes.TestesDeServico
                 servico.Cadastre(unidadeDeTeste);
             });
 
-            Assert.Equal(ex.Message, O_NOME_DO_ELEMENTO_DEVE_SER_INFORMADO);
+            Assert.Equal(ex.Message, ConstantesDeValidacao.O_NOME_DO_ELEMENTO_DEVE_SER_INFORMADO);
         }
 
         [Theory(DisplayName = nameof(TesteCadastroComNumeroErro))]

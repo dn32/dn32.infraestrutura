@@ -8,6 +8,11 @@ namespace dn32.infraestrutura.Fabrica
     {
         public static ValidacaoGenerica<T> Crie<T>() where T : IModelGenerico, new()
         {
+            if (!Compartilhado.Inicializado)
+            {
+                throw new Exception("A infraestrutura deve ser inicializada antes do início da utilização.");
+            }
+
             Compartilhado.DicionarioDeValidacao.TryGetValue(typeof(T).Name, out Type type);
             type = type ?? typeof(ValidacaoGenerica<T>);
             return (ValidacaoGenerica<T>)Activator.CreateInstance(type);

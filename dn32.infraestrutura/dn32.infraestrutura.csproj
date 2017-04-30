@@ -4,6 +4,18 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>dn32.infraestrutura.snk</AssemblyOriginatorKeyFile>
+    <Version>1.1.4</Version>
+    <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Authors>Marcelo Vieira de Souza</Authors>
+    <Company>Dn32 Aplicações</Company>
+    <PackageIconUrl>https://raw.githubusercontent.com/dn32/dn32.infraestrutura/master/Media/Logo/logo icone.gif</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/dn32/dn32.infraestrutura</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/dn32/dn32.infraestrutura/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/dn32/dn32.infraestrutura</RepositoryUrl>
+    <NeutralLanguage>pt-BR</NeutralLanguage>
+    <Description>Infraestrutura base de Repositório, Validação, Serviço e Banco de dados RavenDB para ASP.NET Core</Description>
+    <Copyright>Copyright 2017© dn32 Aplicações</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

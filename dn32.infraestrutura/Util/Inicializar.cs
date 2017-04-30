@@ -66,6 +66,8 @@ namespace dn32.infraestrutura
                 var entidade = ((RepositorioDeAttribute)type.GetTypeInfo().GetCustomAttribute(typeof(RepositorioDeAttribute))).TipoDeEntidade;
                 DicionarioDeRepositorio.Add(entidade.Name, type);
             }
+
+            Inicializado = true;
         }
 
         private static void ValideParametrosDeInicializacao(ParametrosDeInicializacao parametrosDeInicializacao)
