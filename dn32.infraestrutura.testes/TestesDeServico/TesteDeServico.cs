@@ -89,5 +89,26 @@ namespace dn32.infraestrutura.testes.TestesDeServico
 
             Assert.Equal(ex.Message, O_NUMERO_DEVE_SEM_MAIOR_QUE_17_E_MENOR_QUE_80);
         }
+
+        [Fact(DisplayName = nameof(TesteConsultaPadrao))]
+        public void TesteConsultaPadrao()
+        {
+            var servico = FabricaDeServico.Crie<UnidadeDeTeste>();
+
+            var unidadeDeTeste = ObtenhaElementoPadrao();
+            var codigo = servico.Cadastre(unidadeDeTeste);
+            var elementoCadastrado = servico.Consulte(codigo);
+
+            Assert.NotEqual(codigo, 0);
+            Assert.NotNull(elementoCadastrado);
+
+            var consultado = servico.Consulte(codigo);
+
+            var igual = Compare(unidadeDeTeste, consultado, nameof(UnidadeDeTeste.Codigo), nameof(UnidadeDeTeste.DataDeAtualizacao), nameof(UnidadeDeTeste.DataDeCadastro));
+
+            Assert.Equal(igual, true);
+
+            servico.Remova(codigo);
+        }
     }
 }
