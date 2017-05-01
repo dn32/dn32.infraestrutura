@@ -11,5 +11,6 @@ namespace dn32.infraestrutura
         internal static Dictionary<string, Type> DicionarioDeValidacao { get; set; }
         internal static ParametrosDeInicializacao ParametrosDeInicializacao { get; set; }
         internal static bool Inicializado { get; set; }
+        internal static object TravaDeInicializacao { get; set; } = new object();
     }
 }
