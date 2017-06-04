@@ -8,12 +8,24 @@ namespace dn32.infraestrutura.Generico
 {
     public class ControladorGenerico<T> : Controller where T : ModelGenerico, new()
     {
-        public ServicoGenerico<T> Servico { get; set; }
+        protected ServicoGenerico<T> _servico { get; set; }
+
+        public virtual ServicoGenerico<T> Servico
+        {
+            get
+            {
+                if (_servico == null)
+                {
+                    _servico = FabricaDeServico.Crie<T>();
+                }
+
+                return _servico;
+            }
+        }
 
         public ControladorGenerico()
         {
             ViewBag.ControllerName = typeof(T).Name;
-            Servico = FabricaDeServico.Crie<T>() as ServicoGenerico<T>;
         }
     }
 }

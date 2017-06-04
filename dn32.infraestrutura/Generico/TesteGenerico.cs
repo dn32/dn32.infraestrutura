@@ -1,4 +1,5 @@
 ﻿
+using dn32.infraestrutura.Fabrica;
 using dn32.infraestrutura.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -10,6 +11,21 @@ namespace dn32.infraestrutura.Generico
 {
     public abstract class TesteGenerico<T> where T : ModelGenerico, new()
     {
+        protected ServicoGenerico<T> _servico { get; set; }
+
+        public virtual ServicoGenerico<T> Servico
+        {
+            get
+            {
+                if (_servico == null)
+                {
+                    _servico = FabricaDeServico.Crie<T>();
+                }
+
+                return _servico;
+            }
+        }
+
         public TesteGenerico()
         {
             InicializarInfraestrutura();
