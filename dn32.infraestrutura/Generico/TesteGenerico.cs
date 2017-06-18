@@ -11,7 +11,7 @@ namespace dn32.infraestrutura.Generico
 {
     public abstract class TesteGenerico<T> where T : ModelGenerico, new()
     {
-        protected ServicoGenerico<T> _servico { get; set; }
+        private ServicoGenerico<T> _servico { get; set; }
 
         public virtual ServicoGenerico<T> Servico
         {

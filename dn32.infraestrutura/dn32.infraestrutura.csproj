@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>dn32.infraestrutura.snk</AssemblyOriginatorKeyFile>
-    <Version>1.2.1</Version>
+    <Version>1.2.4</Version>
     <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>Marcelo Vieira de Souza</Authors>

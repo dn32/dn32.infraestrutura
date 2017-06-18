@@ -13,7 +13,7 @@ namespace dn32.infraestrutura.Generico
 {
     public class RepositorioGenerico<T> where T : ModelGenerico, new()
     {
-        private static Contexto Contexto { get; set; }
+        protected Contexto Contexto { get; set; }
 
         public RepositorioGenerico()
         {

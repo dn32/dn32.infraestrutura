@@ -8,7 +8,7 @@ namespace dn32.infraestrutura.Generico
 {
     public class ControladorGenerico<T> : Controller where T : ModelGenerico, new()
     {
-        protected ServicoGenerico<T> _servico { get; set; }
+        private ServicoGenerico<T> _servico { get; set; }
 
         public virtual ServicoGenerico<T> Servico
         {

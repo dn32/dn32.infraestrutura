@@ -2,9 +2,9 @@
 
 namespace dn32.infraestrutura.Banco
 {
-    internal class Contexto
+    public class Contexto
     {
-        public static DocumentStore Store { get; set; }
+        public DocumentStore Store { get; set; }
 
         public Contexto()
         {
